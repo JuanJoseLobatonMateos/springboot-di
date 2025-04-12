@@ -5,11 +5,11 @@ import java.util.List;
 
 import comjuanlobaton.springboot.di.app.springboot_di.models.Product;
 
-public class ProductRepository {
+public class ProductRepositoryImpl implements ProductoRepository {
 
     List<Product> data;
 
-    public ProductRepository() {
+    public ProductRepositoryImpl() {
         this.data = Arrays.asList(
                 new Product(1L, "Memoria Corsair 32", 1000L),
                 new Product(2L, "Teclado Razer Mini", 500L),
@@ -20,6 +20,7 @@ public class ProductRepository {
                 new Product(7L, "CPU Intel i7", 3000L));
     }
 
+    @Override
     public List<Product> findAll() {
         return this.data;
     }
@@ -30,6 +31,7 @@ public class ProductRepository {
      * @param id El id del producto a buscar.
      * @return El producto encontrado o null si no se encuentra.
      */
+    @Override
     public Product findById(Long id) {
         return data.stream().filter(p -> p.getId().equals(id)).findFirst().orElse(null);
        
